@@ -25,6 +25,25 @@ var animate = function(){
 				if (y - r <= 0 || y + r >= canvas.height){
 						balls[i].oppvy();
 				}
+
+				for (j in balls){
+						if (j != i){
+								//console.log(balls[j]);
+								var ox = balls[j].getx();
+								var oy = balls[j].gety();
+								var or = balls[j].getr();
+
+								if (x + r >= ox - or || x - r <= ox + r){
+										balls[i].oppvx();
+										balls[j].oppvx();
+								};
+
+								if (y + r >= oy - or || y - r <= oy + r){
+										balls[i].oppvy();
+										balls[j].oppvy();
+								};
+						};
+				};
 				
 				balls[i].incx();
 				balls[i].incy();
@@ -107,4 +126,5 @@ var makeBall = function(x, y, r) {
 				draw : draw,
 		};
 };
+
 
